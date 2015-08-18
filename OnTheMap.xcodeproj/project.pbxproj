@@ -13,6 +13,7 @@
 		FB0C3D101B73A680001D4246 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB0C3D0F1B73A680001D4246 /* Images.xcassets */; };
 		FB0C3D131B73A680001D4246 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB0C3D111B73A680001D4246 /* LaunchScreen.xib */; };
 		FB0C3D1F1B73A680001D4246 /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0C3D1E1B73A680001D4246 /* OnTheMapTests.swift */; };
+		FB152BB91B83D50500C6AD07 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB152BB81B83D50500C6AD07 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		FB0C3D181B73A680001D4246 /* OnTheMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB0C3D1D1B73A680001D4246 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB0C3D1E1B73A680001D4246 /* OnTheMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapTests.swift; sourceTree = "<group>"; };
+		FB152BB81B83D50500C6AD07 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				FB0C3D081B73A680001D4246 /* AppDelegate.swift */,
 				FB0C3D0A1B73A680001D4246 /* LoginViewController.swift */,
+				FB152BB81B83D50500C6AD07 /* ListViewController.swift */,
 				FB0C3D0C1B73A680001D4246 /* Main.storyboard */,
 				FB0C3D0F1B73A680001D4246 /* Images.xcassets */,
 				FB0C3D111B73A680001D4246 /* LaunchScreen.xib */,
@@ -214,6 +217,7 @@
 			files = (
 				FB0C3D0B1B73A680001D4246 /* LoginViewController.swift in Sources */,
 				FB0C3D091B73A680001D4246 /* AppDelegate.swift in Sources */,
+				FB152BB91B83D50500C6AD07 /* ListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
