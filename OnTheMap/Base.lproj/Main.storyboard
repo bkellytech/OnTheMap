@@ -78,10 +78,10 @@
             </objects>
             <point key="canvasLocation" x="1214" y="377"/>
         </scene>
-        <!--View Controller-->
+        <!--Info Post View Controller-->
         <scene sceneID="SVv-BE-75A">
             <objects>
-                <viewController id="MTn-km-oQA" sceneMemberID="viewController">
+                <viewController id="MTn-km-oQA" customClass="InfoPostViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ezQ-v7-L70"/>
                         <viewControllerLayoutGuide type="bottom" id="p8P-On-jaW"/>
