@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9g9-XU-Pme">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -32,9 +32,23 @@
                     <view key="view" contentMode="scaleToFill" id="ct6-an-K9m">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-pc-K3o">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="4Oh-pc-K3o" secondAttribute="trailing" id="8cc-6F-Qqo"/>
+                            <constraint firstItem="4Oh-pc-K3o" firstAttribute="leading" secondItem="ct6-an-K9m" secondAttribute="leading" id="Tz2-CI-O0n"/>
+                            <constraint firstAttribute="bottom" secondItem="4Oh-pc-K3o" secondAttribute="bottom" id="ZFg-F3-NH1"/>
+                            <constraint firstItem="4Oh-pc-K3o" firstAttribute="top" secondItem="ct6-an-K9m" secondAttribute="top" id="dsJ-EF-KQ0"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="QcX-Jw-JzW"/>
+                    <connections>
+                        <outlet property="mapView" destination="4Oh-pc-K3o" id="tyS-5D-onP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23n-ch-b0X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
