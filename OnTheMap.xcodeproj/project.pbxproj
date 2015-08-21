@@ -83,11 +83,9 @@
 		FB0C3D051B73A67F001D4246 /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				FB152BBF1B8667D600C6AD07 /* Model */,
+				FB152BBE1B8667C100C6AD07 /* Controller */,
 				FB0C3D081B73A680001D4246 /* AppDelegate.swift */,
-				FB0C3D0A1B73A680001D4246 /* LoginViewController.swift */,
-				FB152BB81B83D50500C6AD07 /* ListViewController.swift */,
-				FB152BBA1B83D61900C6AD07 /* MapViewController.swift */,
-				FB152BBC1B83D71000C6AD07 /* InfoPostViewController.swift */,
 				FB0C3D0C1B73A680001D4246 /* Main.storyboard */,
 				FB0C3D0F1B73A680001D4246 /* Images.xcassets */,
 				FB0C3D111B73A680001D4246 /* LaunchScreen.xib */,
@@ -119,6 +117,40 @@
 				FB0C3D1D1B73A680001D4246 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB152BBE1B8667C100C6AD07 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FB0C3D0A1B73A680001D4246 /* LoginViewController.swift */,
+				FB152BB81B83D50500C6AD07 /* ListViewController.swift */,
+				FB152BBA1B83D61900C6AD07 /* MapViewController.swift */,
+				FB152BBC1B83D71000C6AD07 /* InfoPostViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		FB152BBF1B8667D600C6AD07 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB152BC01B86AF3000C6AD07 /* Clients */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		FB152BC01B86AF3000C6AD07 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				FB152BC11B86AF4E00C6AD07 /* Udacity */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		FB152BC11B86AF4E00C6AD07 /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Udacity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
