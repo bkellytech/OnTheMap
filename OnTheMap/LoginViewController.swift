@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
 
     @IBAction func logIn(sender: AnyObject) {
         println("TASK: Implement login")
+        UdacityClient.sharedInstance.login()
     }
 
 }
