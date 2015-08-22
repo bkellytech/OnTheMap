@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
         println("TASK: Implement login")
         UdacityClient.sharedInstance.login()
         UdacityClient.sharedInstance.getUserData("3903878747")
+        UdacityClient.sharedInstance.logout()
     }
 
 }
