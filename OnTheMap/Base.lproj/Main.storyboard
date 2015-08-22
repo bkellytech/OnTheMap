@@ -17,8 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kwo-3n-ouV">
+                                <rect key="frame" x="16" y="232" width="568" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="khm-zl-sRf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Plp-bL-iLM">
+                                <rect key="frame" x="16" y="280" width="568" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3ng-9H-tpb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7f-VZ-fg6">
-                                <rect key="frame" x="16" y="516" width="568" height="40"/>
+                                <rect key="frame" x="16" y="328" width="568" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="gye-ui-YpW"/>
                                 </constraints>
@@ -33,13 +49,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Plp-bL-iLM" secondAttribute="centerX" id="8Rt-3x-FuR"/>
                             <constraint firstItem="M7f-VZ-fg6" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="BhM-eM-W3G"/>
+                            <constraint firstItem="Plp-bL-iLM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="HXT-yl-A2F"/>
+                            <constraint firstItem="Kwo-3n-ouV" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="OQS-KM-ucz"/>
+                            <constraint firstItem="Plp-bL-iLM" firstAttribute="top" secondItem="Kwo-3n-ouV" secondAttribute="bottom" constant="8" id="Vc9-kH-T4A"/>
+                            <constraint firstItem="Kwo-3n-ouV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="WVk-GG-Whh"/>
+                            <constraint firstItem="Plp-bL-iLM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="bQD-Ki-jPs"/>
+                            <constraint firstItem="Kwo-3n-ouV" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="dfM-dI-Djn"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="M7f-VZ-fg6" secondAttribute="bottom" constant="44" id="hUO-EK-dgR"/>
                             <constraint firstItem="M7f-VZ-fg6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lVI-Fp-XF8"/>
+                            <constraint firstItem="M7f-VZ-fg6" firstAttribute="top" secondItem="Plp-bL-iLM" secondAttribute="bottom" constant="8" id="pR6-ri-PLr"/>
+                            <constraint firstAttribute="centerY" secondItem="Plp-bL-iLM" secondAttribute="centerY" id="uVw-vh-g9p"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="OQS-KM-ucz"/>
+                                <exclude reference="hUO-EK-dgR"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="M7f-VZ-fg6" id="KLj-nN-pWL"/>
+                        <outlet property="passwordField" destination="Plp-bL-iLM" id="uP0-je-sdt"/>
+                        <outlet property="usernameField" destination="Kwo-3n-ouV" id="TPf-bb-HdO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

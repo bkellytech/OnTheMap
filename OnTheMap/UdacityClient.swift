@@ -16,9 +16,8 @@ class UdacityClient: NSObject {
     override init() {
         super.init()
     }
-    
 
-    func login() {
+    func login(username: String, password: String) {
         let urlString = Constants.BaseURL + Methods.Session
         let URL = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: URL)
@@ -26,7 +25,7 @@ class UdacityClient: NSObject {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = "{\"udacity\": {\"username\": \"udacity@login.com\", \"password\": \"*********\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in

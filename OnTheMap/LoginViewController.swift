@@ -11,6 +11,8 @@ import UIKit
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,7 @@ class LoginViewController: UIViewController {
 
     @IBAction func logIn(sender: AnyObject) {
         println("TASK: Implement login")
-        UdacityClient.sharedInstance.login()
+        UdacityClient.sharedInstance.login(usernameField.text, password: passwordField.text)
         UdacityClient.sharedInstance.getUserData("3903878747")
         UdacityClient.sharedInstance.logout()
     }
