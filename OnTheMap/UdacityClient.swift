@@ -26,11 +26,29 @@ class UdacityClient: NSObject {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = "{\"udacity\": {\"username\": \"udacity@login.com\", \"password\": \"**********\"}}".dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPBody = "{\"udacity\": {\"username\": \"udacity@login.com\", \"password\": \"*********\"}}".dataUsingEncoding(NSUTF8StringEncoding)
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil { // Handle error…
+                return
+            }
+            let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            println(NSString(data: trimmedData, encoding: NSUTF8StringEncoding))
+        }
+        task.resume()
+    }
+    
+    func getUserData(userID: String) {
+        let urlString = Constants.BaseURL + Methods.User + userID
+        let URL = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: URL)
+        
+        request.HTTPMethod = "GET"
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            if error != nil { // Handle error...
                 return
             }
             let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
