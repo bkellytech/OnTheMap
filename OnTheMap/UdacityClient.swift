@@ -17,12 +17,13 @@ class UdacityClient: NSObject {
         super.init()
     }
 
-    func login(username: String, password: String) {
+    func loginWithUsername(username: String, password: String, completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
         let urlString = Constants.BaseURL + Methods.Session
         let URL = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: URL)
         
         request.HTTPMethod = "POST"
+
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
@@ -30,11 +31,15 @@ class UdacityClient: NSObject {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil { // Handle error…
-                return
+                completionHandler(success: false, errorMessage: "Error downloading data")
+            } else {
+                let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+                println(NSString(data: trimmedData, encoding: NSUTF8StringEncoding))
+                completionHandler(success: true, errorMessage: nil)
             }
-            let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            println(NSString(data: trimmedData, encoding: NSUTF8StringEncoding))
+
         }
+        
         task.resume()
     }
     

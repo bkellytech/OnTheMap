@@ -77,6 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="448" y="377"/>
         </scene>
         <!--Map-->
         <scene sceneID="qoZ-0O-haw">
@@ -133,7 +134,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="iJb-cl-CX7">
             <objects>
-                <tabBarController id="9g9-XU-Pme" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="OnTheMapTabBarController" id="9g9-XU-Pme" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="JuC-TY-IZp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
