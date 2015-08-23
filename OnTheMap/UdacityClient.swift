@@ -13,7 +13,12 @@ class UdacityClient: NSObject {
     //Singleton
     static let sharedInstance = UdacityClient()
     
+    var userID: String?
+    var loggedIn: Bool
+    
     override init() {
+        loggedIn = false
+
         super.init()
     }
 
@@ -35,17 +40,24 @@ class UdacityClient: NSObject {
             } else {
                 let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
                 
-                Utility.parseJSONWithCompletionHandler(trimmedData) { (result, error) in
+                ClientUtility.parseJSONWithCompletionHandler(trimmedData) { (result, error) in
                     if let error = error {
                         completionHandler(success: false, errorMessage: error.description)
                     } else {
-                        
+                        if let account = result.valueForKey("account") as? NSDictionary {
+                            if let userID = account.valueForKey("key") as? String {
+                                self.userID = userID
+                                self.loggedIn = true
+                                completionHandler(success: true, errorMessage: nil)
+                            } else {
+                                completionHandler(success: false, errorMessage: "Login Failed (User ID).")
+                            }
+                        } else {
+                            completionHandler(success: false, errorMessage: "Login Failed (User ID).")
+                        }
                     }
                 }
-                
-                
             }
-
         }
         
         task.resume()
@@ -91,6 +103,8 @@ class UdacityClient: NSObject {
                 return
             }
             let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            self.userID = nil
+            self.loggedIn = false
             println(NSString(data: trimmedData, encoding: NSUTF8StringEncoding))
         }
         task.resume()

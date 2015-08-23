@@ -18,4 +18,5 @@ extension UdacityClient {
         static let Session = "session"
         static let User = "users/"
     }
+    
 }

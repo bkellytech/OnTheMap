@@ -25,18 +25,25 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func logIn(sender: AnyObject) {
-        println("TASK: Implement login")
         UdacityClient.sharedInstance.loginWithUsername( usernameField.text, password: passwordField.text) { (success, error) in
             
             if success {
-                //Move to TabBaController
+                //Move to TabBarController
+                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("OnTheMapTabBarController") as! UITabBarController
                 dispatch_async(dispatch_get_main_queue()) {
-                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("OnTheMapTabBarController") as! UITabBarController
                     self.presentViewController(controller, animated: true, completion: nil)
                 }
-                
             } else {
                 //Display error message
+                let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    self.usernameField.text = ""
+                    self.passwordField.text = ""
+                }
+                alert.addAction(dismissAction)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
             }
         }
     }
