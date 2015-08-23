@@ -51,7 +51,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let location = locations[indexPath.row]
         
+        let app = UIApplication.sharedApplication()
+        if let url = NSURL(string: location.mediaURL) {
+             app.openURL( url )
+        } else {
+            println("ERROR: Invalid url")
+        }
     }
     
 }
