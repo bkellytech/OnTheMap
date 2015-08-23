@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Utility: NSObject {
+class ClientUtility: NSObject {
     
     /* Helper: Given raw JSON, return a usable Foundation object */
     class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {

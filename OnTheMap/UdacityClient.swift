@@ -30,13 +30,20 @@ class UdacityClient: NSObject {
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error…
-                completionHandler(success: false, errorMessage: "Error downloading data")
+            if error != nil {
+                completionHandler(success: false, errorMessage: "Network error occured.")
             } else {
                 let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
                 
+                Utility.parseJSONWithCompletionHandler(trimmedData) { (result, error) in
+                    if let error = error {
+                        completionHandler(success: false, errorMessage: error.description)
+                    } else {
+                        
+                    }
+                }
                 
-                completionHandler(success: true, errorMessage: nil)
+                
             }
 
         }
