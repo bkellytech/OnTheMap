@@ -10,12 +10,25 @@ import UIKit
 
 class ListViewController: UIViewController {
 
+    var locations: [ParseStudentLocation] = [ParseStudentLocation]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        ParseClient.sharedInstance.getStudentLocations() { locations, error in
+            if locations != nil {
+                self.locations = locations!
+            } else {
+                println("ERROR:")
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -13,6 +13,10 @@ class ParseClient: NSObject {
     //Singleton
     static let sharedInstance = ParseClient()
     
+    override init() {
+        super.init()
+    }
+    
 
     func requestForMethod( method: String ) -> NSMutableURLRequest {
         let urlString = Constants.BaseURL
@@ -41,5 +45,20 @@ class ParseClient: NSObject {
     }
 
     
+    func getStudentLocations( completionHandler: (results: [ParseStudentLocation]?, errorMessage: String?) -> Void ) {
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: Constants.BaseURL)!)
+        
+        taskWithRequest(request) { JSONresults, error in
+            if error == nil {
+                if let results = JSONresults?.valueForKey(JSONResponseKeys.results) as? [[String : AnyObject]] {
+                    var locations = ParseStudentLocation.locationsFromResults(results)
+                    completionHandler( results: locations, errorMessage: nil )
+                }
+            } else {
+                completionHandler( results: nil, errorMessage: Messages.networkError )
+            }
+        }
+    }
     
 }
