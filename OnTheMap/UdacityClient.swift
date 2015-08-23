@@ -14,77 +14,64 @@ class UdacityClient: NSObject {
     static let sharedInstance = UdacityClient()
     
     var userID: String?
-    var loggedIn: Bool
     
     override init() {
-        loggedIn = false
-
         super.init()
     }
+    
+    func requestForMethod( method: String ) -> NSMutableURLRequest {
+        let urlString = Constants.BaseURL + method
+        let URL = NSURL(string: urlString)!
+        return NSMutableURLRequest(URL: URL)
+    }
+    
+    func taskWithRequest( request: NSURLRequest, completionHandler: (results: AnyObject?, error: NSError?) -> Void ) -> NSURLSessionTask {
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest( request ) { (data, response, error) in
+            if error == nil {
+                //Success
+                let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+                ClientUtility.parseJSONWithCompletionHandler(trimmedData, completionHandler: completionHandler)
+            } else {
+                //Error
+                completionHandler(results: nil, error: error)
+            }
+        }
+        task.resume()
+        return task
+    }
+    
 
     func loginWithUsername(username: String, password: String, completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
-        let urlString = Constants.BaseURL + Methods.Session
-        let URL = NSURL(string: urlString)!
-        let request = NSMutableURLRequest(URL: URL)
+        let request = requestForMethod(Methods.Session)
         
         request.HTTPMethod = "POST"
-
+        
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}".dataUsingEncoding(NSUTF8StringEncoding)
         
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil {
-                completionHandler(success: false, errorMessage: "Network error occured.")
-            } else {
-                let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-                
-                ClientUtility.parseJSONWithCompletionHandler(trimmedData) { (result, error) in
-                    if let error = error {
-                        completionHandler(success: false, errorMessage: "Network error occured.")
+        taskWithRequest( request ) { result, error in
+            if error == nil {
+                if let account = result!.valueForKey("account") as? NSDictionary {
+                    if let userID = account.valueForKey("key") as? String {
+                        self.userID = userID
+                        completionHandler(success: true, errorMessage: nil)
                     } else {
-                        if let account = result.valueForKey("account") as? NSDictionary {
-                            if let userID = account.valueForKey("key") as? String {
-                                self.userID = userID
-                                self.loggedIn = true
-                                completionHandler(success: true, errorMessage: nil)
-                            } else {
-                                completionHandler(success: false, errorMessage: "Login Failed (User ID).")
-                            }
-                        } else {
-                            completionHandler(success: false, errorMessage: "Login Failed (User ID).")
-                        }
+                        completionHandler(success: false, errorMessage: Messages.loginError)
                     }
+                } else {
+                    completionHandler(success: false, errorMessage: Messages.loginError)
                 }
+            } else {
+                completionHandler(success: false, errorMessage: Messages.networkError)
             }
         }
-        
-        task.resume()
     }
     
-    func getUserData(userID: String) {
-        let urlString = Constants.BaseURL + Methods.User + userID
-        let URL = NSURL(string: urlString)!
-        let request = NSMutableURLRequest(URL: URL)
-        
-        request.HTTPMethod = "GET"
-        
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error...
-                return
-            }
-            let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            println(NSString(data: trimmedData, encoding: NSUTF8StringEncoding))
-        }
-        task.resume()
-    }
-    
-    func logout() {
-        let urlString = Constants.BaseURL + Methods.Session
-        let URL = NSURL(string: urlString)!
-        let request = NSMutableURLRequest(URL: URL)
+    func logout( completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
+        let request = requestForMethod(Methods.Session)
         
         request.HTTPMethod = "DELETE"
         
@@ -97,17 +84,28 @@ class UdacityClient: NSObject {
             request.setValue(xsrfCookie.value!, forHTTPHeaderField: "X-XSRF-TOKEN")
         }
         
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error…
-                return
+        taskWithRequest(request) { result, error in
+            if error == nil {
+                self.userID = nil
+            } else {
+                completionHandler(success: false, errorMessage: Messages.networkError)
             }
-            let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            self.userID = nil
-            self.loggedIn = false
-            println(NSString(data: trimmedData, encoding: NSUTF8StringEncoding))
         }
-        task.resume()
+    }
+    
+    func getUserData(userID: String, completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
+        let request = requestForMethod(Methods.User + userID)
+        
+        request.HTTPMethod = "GET"
+        
+        taskWithRequest(request) { result, error in
+            if error == nil {
+                println("Success")
+            } else {
+                completionHandler(success: false, errorMessage: Messages.networkError)
+            }
+        }
+
     }
     
 }
