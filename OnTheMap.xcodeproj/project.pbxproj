@@ -18,6 +18,7 @@
 		FB152BBD1B83D71000C6AD07 /* InfoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB152BBC1B83D71000C6AD07 /* InfoPostViewController.swift */; };
 		FB152BC31B88EC1200C6AD07 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB152BC21B88EC1200C6AD07 /* UdacityClient.swift */; };
 		FB152BC51B88F09900C6AD07 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB152BC41B88F09900C6AD07 /* UdacityConstants.swift */; };
+		FB152BC71B89540000C6AD07 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB152BC61B89540000C6AD07 /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		FB152BBC1B83D71000C6AD07 /* InfoPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPostViewController.swift; sourceTree = "<group>"; };
 		FB152BC21B88EC1200C6AD07 /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		FB152BC41B88F09900C6AD07 /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		FB152BC61B89540000C6AD07 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				FB152BC01B86AF3000C6AD07 /* Clients */,
+				FB152BC61B89540000C6AD07 /* Utility.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				FB152BC51B88F09900C6AD07 /* UdacityConstants.swift in Sources */,
 				FB0C3D091B73A680001D4246 /* AppDelegate.swift in Sources */,
 				FB152BC31B88EC1200C6AD07 /* UdacityClient.swift in Sources */,
+				FB152BC71B89540000C6AD07 /* Utility.swift in Sources */,
 				FB152BB91B83D50500C6AD07 /* ListViewController.swift in Sources */,
 				FB152BBD1B83D71000C6AD07 /* InfoPostViewController.swift in Sources */,
 				FB152BBB1B83D61900C6AD07 /* MapViewController.swift in Sources */,

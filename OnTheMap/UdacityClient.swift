@@ -34,7 +34,8 @@ class UdacityClient: NSObject {
                 completionHandler(success: false, errorMessage: "Error downloading data")
             } else {
                 let trimmedData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-                println(NSString(data: trimmedData, encoding: NSUTF8StringEncoding))
+                
+                
                 completionHandler(success: true, errorMessage: nil)
             }
 
