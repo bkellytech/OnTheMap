@@ -21,6 +21,7 @@
 		FB152BC71B89540000C6AD07 /* ClientUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB152BC61B89540000C6AD07 /* ClientUtility.swift */; };
 		FB152BD21B8A2B8800C6AD07 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB152BD01B8A2B8800C6AD07 /* ParseClient.swift */; };
 		FB152BD31B8A2B8800C6AD07 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB152BD11B8A2B8800C6AD07 /* ParseConstants.swift */; };
+		FB152BD61B8A2C0C00C6AD07 /* ParseStudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB152BD51B8A2C0C00C6AD07 /* ParseStudentLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		FB152BC61B89540000C6AD07 /* ClientUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientUtility.swift; sourceTree = "<group>"; };
 		FB152BD01B8A2B8800C6AD07 /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		FB152BD11B8A2B8800C6AD07 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
+		FB152BD51B8A2C0C00C6AD07 /* ParseStudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseStudentLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			children = (
 				FB152BD01B8A2B8800C6AD07 /* ParseClient.swift */,
 				FB152BD11B8A2B8800C6AD07 /* ParseConstants.swift */,
+				FB152BD51B8A2C0C00C6AD07 /* ParseStudentLocation.swift */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				FB152BC31B88EC1200C6AD07 /* UdacityClient.swift in Sources */,
 				FB152BC71B89540000C6AD07 /* ClientUtility.swift in Sources */,
 				FB152BB91B83D50500C6AD07 /* ListViewController.swift in Sources */,
+				FB152BD61B8A2C0C00C6AD07 /* ParseStudentLocation.swift in Sources */,
 				FB152BBD1B83D71000C6AD07 /* InfoPostViewController.swift in Sources */,
 				FB152BBB1B83D61900C6AD07 /* MapViewController.swift in Sources */,
 			);
