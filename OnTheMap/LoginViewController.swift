@@ -29,8 +29,8 @@ class LoginViewController: UIViewController {
             
             if success {
                 //Move to TabBarController
-                let controller = self.storyboard!.instantiateViewControllerWithIdentifier("OnTheMapTabBarController") as! UITabBarController
                 dispatch_async(dispatch_get_main_queue()) {
+                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("OnTheMapTabBarController") as! UITabBarController
                     self.presentViewController(controller, animated: true, completion: nil)
                 }
             } else {
