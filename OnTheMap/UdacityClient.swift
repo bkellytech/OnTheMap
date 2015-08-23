@@ -14,6 +14,15 @@ class UdacityClient: NSObject {
     static let sharedInstance = UdacityClient()
     
     var userID: String?
+    var name: Name?
+    
+    struct Name {
+        var first = ""
+        var last = ""
+        var fullname: String {
+            return "\(first) \(last)"
+        }
+    }
     
     override init() {
         super.init()
@@ -22,6 +31,7 @@ class UdacityClient: NSObject {
     func requestForMethod( method: String ) -> NSMutableURLRequest {
         let urlString = Constants.BaseURL + method
         let URL = NSURL(string: urlString)!
+        
         return NSMutableURLRequest(URL: URL)
     }
     
@@ -57,6 +67,14 @@ class UdacityClient: NSObject {
                 if let account = result!.valueForKey("account") as? NSDictionary {
                     if let userID = account.valueForKey("key") as? String {
                         self.userID = userID
+                        self.getUserData( userID ) { success, errorMessage in
+                            if( success ) {
+                                println( "Name: \(self.name!.fullname)" )
+                            } else {
+                                println( "Error: \(errorMessage)" )
+                            }
+                        }
+                        
                         completionHandler(success: true, errorMessage: nil)
                     } else {
                         completionHandler(success: false, errorMessage: Messages.loginError)
@@ -95,12 +113,22 @@ class UdacityClient: NSObject {
     
     func getUserData(userID: String, completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
         let request = requestForMethod(Methods.User + userID)
-        
         request.HTTPMethod = "GET"
         
         taskWithRequest(request) { result, error in
             if error == nil {
-                println("Success")
+                if let user = result!.valueForKey("user") as? NSDictionary {
+                    self.name = Name()
+                    
+                    if let last_name = user.valueForKey("last_name") as? String{
+                        self.name?.last = last_name
+                    }
+                    
+                    if let first_name = user.valueForKey("first_name") as? String{
+                        self.name?.first = first_name
+                    }
+                    completionHandler(success: true, errorMessage: nil)
+                }
             } else {
                 completionHandler(success: false, errorMessage: Messages.networkError)
             }
