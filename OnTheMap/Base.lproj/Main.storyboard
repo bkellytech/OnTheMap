@@ -201,7 +201,7 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="On The Map" id="QGW-3I-gmh">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" id="Iml-Te-UPM"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Pin" id="Iml-Te-UPM"/>
                                         <barButtonItem key="rightBarButtonItem" title="Logout" id="S3F-i9-rX0"/>
                                     </navigationItem>
                                 </items>
