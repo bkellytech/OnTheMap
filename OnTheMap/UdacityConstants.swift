@@ -20,8 +20,8 @@ extension UdacityClient {
     }
     
     struct Messages {
-        static let loginError = "Login failed. Incorrect username or password"
-        static let networkError = "Network error occured."
+        static let loginError = "Udacity Login failed. Incorrect username or password"
+        static let networkError = "Error connecting to Udacity."
     }
     
 }
