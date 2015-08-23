@@ -33,6 +33,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SbU-vL-U4V">
+                                <rect key="frame" x="290" y="338" width="20" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7f-VZ-fg6">
                                 <rect key="frame" x="16" y="328" width="568" height="40"/>
                                 <constraints>
@@ -60,16 +63,21 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="M7f-VZ-fg6" secondAttribute="bottom" constant="44" id="hUO-EK-dgR"/>
                             <constraint firstItem="M7f-VZ-fg6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lVI-Fp-XF8"/>
                             <constraint firstItem="M7f-VZ-fg6" firstAttribute="top" secondItem="Plp-bL-iLM" secondAttribute="bottom" constant="8" id="pR6-ri-PLr"/>
+                            <constraint firstAttribute="centerY" secondItem="SbU-vL-U4V" secondAttribute="centerY" constant="-48" id="rJP-Jl-jSd"/>
+                            <constraint firstItem="SbU-vL-U4V" firstAttribute="top" secondItem="Plp-bL-iLM" secondAttribute="bottom" constant="18" id="slc-UI-siE"/>
                             <constraint firstAttribute="centerY" secondItem="Plp-bL-iLM" secondAttribute="centerY" id="uVw-vh-g9p"/>
+                            <constraint firstAttribute="centerX" secondItem="SbU-vL-U4V" secondAttribute="centerX" id="zjf-LF-Zly"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="OQS-KM-ucz"/>
+                                <exclude reference="rJP-Jl-jSd"/>
                                 <exclude reference="hUO-EK-dgR"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="SbU-vL-U4V" id="FjR-Uh-a6e"/>
                         <outlet property="loginButton" destination="M7f-VZ-fg6" id="KLj-nN-pWL"/>
                         <outlet property="passwordField" destination="Plp-bL-iLM" id="uP0-je-sdt"/>
                         <outlet property="usernameField" destination="Kwo-3n-ouV" id="TPf-bb-HdO"/>

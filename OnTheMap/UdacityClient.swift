@@ -42,7 +42,7 @@ class UdacityClient: NSObject {
                 
                 ClientUtility.parseJSONWithCompletionHandler(trimmedData) { (result, error) in
                     if let error = error {
-                        completionHandler(success: false, errorMessage: error.description)
+                        completionHandler(success: false, errorMessage: "Network error occured.")
                     } else {
                         if let account = result.valueForKey("account") as? NSDictionary {
                             if let userID = account.valueForKey("key") as? String {
