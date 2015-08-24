@@ -92,10 +92,13 @@ class InfoPostViewController: UIViewController {
                     self.longitude = coordinates.longitude as Double
                     self.mapString = location
                     
+                    let region = MKCoordinateRegionMake(coordinates, MKCoordinateSpanMake(0.5, 0.5))
+                    
                     //Reconfigure display
                     dispatch_async(dispatch_get_main_queue()) {
                         self.activityIndicator.stopAnimating()
                         self.mapView.hidden = false
+                        self.mapView.setRegion(region, animated: true)
                         self.topLabel.text = "What is your link?"
                         self.entryField.text = "Enter URL"
                         self.submitButton.setTitle("Submit", forState: .Normal)
