@@ -108,16 +108,16 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="On The Map" id="rKO-bZ-u6a">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="c0c-wY-xpe">
+                                        <barButtonItem key="leftBarButtonItem" title="Log out" id="qTB-nt-D2K">
+                                            <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="logout:" destination="Jqi-oR-qa9" id="yTT-yS-AEZ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="c0c-wY-xpe">
                                             <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="createPin:" destination="Jqi-oR-qa9" id="MVp-LQ-QQb"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="OFz-dl-WtC">
-                                            <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="logout:" destination="Jqi-oR-qa9" id="UBk-Ee-NM7"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -227,16 +227,16 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="On The Map" id="QGW-3I-gmh">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Iml-Te-UPM">
+                                        <barButtonItem key="leftBarButtonItem" title="Log out" id="AjA-Oo-hL9">
+                                            <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="logOut:" destination="dQB-pT-6KN" id="TnZ-W6-7Rn"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Iml-Te-UPM">
                                             <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="addPin:" destination="dQB-pT-6KN" id="QMN-vg-nCQ"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="S3F-i9-rX0">
-                                            <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="logOut:" destination="dQB-pT-6KN" id="KK5-7f-Evd"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
