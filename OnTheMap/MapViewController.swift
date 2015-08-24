@@ -66,6 +66,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    @IBAction func createPin(sender: AnyObject) {
+        let infoPostController = self.storyboard?.instantiateViewControllerWithIdentifier("InfoPostViewController") as! InfoPostViewController
+        
+        self.presentViewController(infoPostController, animated: true, completion: nil)
+    }
+    
     @IBAction func logout(sender: AnyObject) {
         UdacityClient.sharedInstance.logout() { success, error in
             if success == true {

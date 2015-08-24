@@ -42,7 +42,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     @IBAction func addPin(sender: AnyObject) {
+        let infoPostController = self.storyboard?.instantiateViewControllerWithIdentifier("InfoPostViewController") as! InfoPostViewController
         
+        self.presentViewController(infoPostController, animated: true, completion: nil)
     }
     
     @IBAction func logOut(sender: AnyObject) {

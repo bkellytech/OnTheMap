@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kwo-3n-ouV">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kwo-3n-ouV">
                                 <rect key="frame" x="16" y="232" width="568" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="khm-zl-sRf"/>
@@ -25,7 +25,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Plp-bL-iLM">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Plp-bL-iLM">
                                 <rect key="frame" x="16" y="280" width="568" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3ng-9H-tpb"/>
@@ -42,6 +42,7 @@
                                     <constraint firstAttribute="height" constant="40" id="gye-ui-YpW"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" red="0.28254722758001305" green="0.33985565837994036" blue="0.81442212301587302" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Log in">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -50,7 +51,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.85489510489510501" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Plp-bL-iLM" secondAttribute="centerX" id="8Rt-3x-FuR"/>
                             <constraint firstItem="M7f-VZ-fg6" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="BhM-eM-W3G"/>
@@ -107,8 +108,14 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="On The Map" id="rKO-bZ-u6a">
-                                        <barButtonItem key="leftBarButtonItem" title="Pin" id="c0c-wY-xpe"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="c0c-wY-xpe">
+                                            <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="createPin:" destination="Jqi-oR-qa9" id="MVp-LQ-QQb"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Logout" id="OFz-dl-WtC">
+                                            <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="logout:" destination="Jqi-oR-qa9" id="UBk-Ee-NM7"/>
                                             </connections>
@@ -214,17 +221,20 @@
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iz2-Eu-J5U">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                <color key="backgroundColor" white="0.85489510489999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="u1b-cq-OPl"/>
                                 </constraints>
                                 <items>
                                     <navigationItem title="On The Map" id="QGW-3I-gmh">
-                                        <barButtonItem key="leftBarButtonItem" title="Pin" id="Iml-Te-UPM">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Iml-Te-UPM">
+                                            <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="addPin:" destination="dQB-pT-6KN" id="QMN-vg-nCQ"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Logout" id="S3F-i9-rX0">
+                                            <color key="tintColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="logOut:" destination="dQB-pT-6KN" id="KK5-7f-Evd"/>
                                             </connections>
@@ -307,7 +317,7 @@
         <!--Info Post View Controller-->
         <scene sceneID="SVv-BE-75A">
             <objects>
-                <viewController id="MTn-km-oQA" customClass="InfoPostViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InfoPostViewController" id="MTn-km-oQA" customClass="InfoPostViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ezQ-v7-L70"/>
                         <viewControllerLayoutGuide type="bottom" id="p8P-On-jaW"/>
@@ -315,7 +325,63 @@
                     <view key="view" contentMode="scaleToFill" id="tFZ-ZA-TjI">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMr-Ku-sfU">
+                                <rect key="frame" x="-6" y="0.0" width="606" height="120"/>
+                                <color key="backgroundColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="7k3-dH-gfa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbb-Js-z9s">
+                                <rect key="frame" x="194" y="518" width="213" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="AkX-ZA-gSJ"/>
+                                    <constraint firstAttribute="width" constant="213" id="hNB-39-vDg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Find on the map">
+                                    <color key="titleColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbk-ep-24j">
+                                <rect key="frame" x="16" y="159" width="568" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="vbK-ZK-je9"/>
+                                </constraints>
+                                <color key="textColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Hdt-B6-icN">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-MS-HG9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.85489510489999998" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="Hdt-B6-icN" secondAttribute="centerY" id="6va-OV-LLg"/>
+                            <constraint firstItem="p8P-On-jaW" firstAttribute="top" secondItem="hbb-Js-z9s" secondAttribute="bottom" constant="38" id="BLZ-cG-EF7"/>
+                            <constraint firstItem="rMr-Ku-sfU" firstAttribute="top" secondItem="tFZ-ZA-TjI" secondAttribute="topMargin" id="FZW-q0-F8K"/>
+                            <constraint firstAttribute="centerX" secondItem="Hdt-B6-icN" secondAttribute="centerX" id="Ffr-53-3ka"/>
+                            <constraint firstItem="Jvs-MS-HG9" firstAttribute="top" secondItem="tFZ-ZA-TjI" secondAttribute="topMargin" id="K26-Ea-Cb3"/>
+                            <constraint firstItem="fbk-ep-24j" firstAttribute="leading" secondItem="tFZ-ZA-TjI" secondAttribute="leadingMargin" id="Mjx-t3-ViY"/>
+                            <constraint firstItem="Jvs-MS-HG9" firstAttribute="leading" secondItem="tFZ-ZA-TjI" secondAttribute="leadingMargin" constant="-16" id="NmH-Wi-kam"/>
+                            <constraint firstItem="fbk-ep-24j" firstAttribute="trailing" secondItem="tFZ-ZA-TjI" secondAttribute="trailingMargin" id="cxc-3a-iaX"/>
+                            <constraint firstItem="rMr-Ku-sfU" firstAttribute="leading" secondItem="tFZ-ZA-TjI" secondAttribute="leadingMargin" constant="-22" id="eFz-ZR-ike"/>
+                            <constraint firstItem="p8P-On-jaW" firstAttribute="top" secondItem="Jvs-MS-HG9" secondAttribute="bottom" id="edP-xa-rwS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jvs-MS-HG9" secondAttribute="trailing" constant="-16" id="gqk-nd-LxR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rMr-Ku-sfU" secondAttribute="trailing" constant="-16" id="n2l-nW-sBG"/>
+                            <constraint firstAttribute="centerX" secondItem="hbb-Js-z9s" secondAttribute="centerX" constant="-0.5" id="oDK-0c-dEX"/>
+                            <constraint firstItem="fbk-ep-24j" firstAttribute="top" secondItem="rMr-Ku-sfU" secondAttribute="bottom" constant="39" id="zz3-FT-kJs"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMd-qX-90U" userLabel="First Responder" sceneMemberID="firstResponder"/>
