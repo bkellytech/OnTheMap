@@ -23,7 +23,7 @@ class InfoPostViewController: UIViewController {
     var mediaURL: String?
     var latitude: Double?
     var longitude: Double?
-    var newLocation: Bool = true;
+    var objectId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +32,10 @@ class InfoPostViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        ParseClient.sharedInstance.queryStudentLocation("3778758647") { results, error in
+        ParseClient.sharedInstance.queryStudentLocation(UdacityClient.sharedInstance.userID!) { results, error in
             if let locations = results {
                 if locations.count > 0 {
-                    self.newLocation = false;
+                    self.objectId = locations[0].objectId
                     println("You have already created a location would you like to overwrite it?")
                 } else {
                     //All clear go a head and create a new one
@@ -53,7 +53,25 @@ class InfoPostViewController: UIViewController {
         } else {
             if let url = NSURL(string: entryField.text) {
                 mediaURL = entryField.text
-                println("Success")
+                
+                let locationData: [String: AnyObject] = [
+                    ParseClient.JSONResponseKeys.uniqueKey: UdacityClient.sharedInstance.userID!,
+                    ParseClient.JSONResponseKeys.firstName: UdacityClient.sharedInstance.name!.first,
+                    ParseClient.JSONResponseKeys.lastName: UdacityClient.sharedInstance.name!.last,
+                    ParseClient.JSONResponseKeys.mapString: mapString!,
+                    ParseClient.JSONResponseKeys.mediaURL: mediaURL!,
+                    ParseClient.JSONResponseKeys.latitude: latitude!,
+                    ParseClient.JSONResponseKeys.longitude: longitude!
+                ]
+                
+                ParseClient.sharedInstance.postStudentLocation(locationData) { success, errorMessage in
+                    if success {
+                        println("User location saved")
+                    } else {
+                        println(errorMessage)
+                    }
+                }
+                
             } else {
                 println("Please enter a valid URL")
             }
@@ -67,7 +85,6 @@ class InfoPostViewController: UIViewController {
                 if let placemark = placemarks[0] as? CLPlacemark {
                     let coordinates = placemark.location.coordinate
                     
-                    
                     //Setup data for submission
                     self.latitude = coordinates.latitude as Double
                     self.longitude = coordinates.longitude as Double
@@ -78,6 +95,7 @@ class InfoPostViewController: UIViewController {
                         self.mapView.hidden = false
                         self.topLabel.text = "What is your link?"
                         self.entryField.text = "Enter URL"
+                        self.submitButton.setTitle("Submit", forState: .Normal)
                     }
                 }
             } else {

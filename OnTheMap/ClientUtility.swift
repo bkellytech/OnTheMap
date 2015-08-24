@@ -10,27 +10,25 @@ import Foundation
 
 class ClientUtility: NSObject {
     
-    func taskForGetMethod(
-        baseURL: String,
-        method: String,
-        parameters: [String: AnyObject],
-        httpHeaders: [String: AnyObject],
-        completionHandler: (result: AnyObject!, error: NSError?) ) -> NSURLSessionDataTask {
+    /* Helper function: Given a dictionary of parameters, convert to a string for a url */
+    class func escapedParameters(parameters: [String : AnyObject]) -> String {
         
-        let urlString = baseURL + method
+        var urlVars = [String]()
+        
+        for (key, value) in parameters {
             
-        return NSURLSessionDataTask()
-    }
-    
-    func taskForPostMethod(
-        baseURL: String,
-        method: String,
-        parameters: [String: AnyObject],
-        httpHeaders: [String: AnyObject],
-        httpBody: [String:AnyObject],
-        completionHandler: (result: AnyObject!, error: NSError?) ) -> NSURLSessionDataTask {
+            /* Make sure that it is a string value */
+            let stringValue = "\(value)"
+            
+            /* Escape it */
+            let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            
+            /* Append it */
+            urlVars += [key + "=" + "\(escapedValue!)"]
+            
+        }
         
-        return NSURLSessionDataTask()
+        return (!urlVars.isEmpty ? "?" : "") + join("&", urlVars)
     }
     
     /* Helper: Given raw JSON, return a usable Foundation object */
