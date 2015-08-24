@@ -119,11 +119,23 @@
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-pc-K3o">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Jqi-oR-qa9" id="3MU-W0-EUc"/>
+                                </connections>
                             </mapView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sNf-3Q-qKy">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="S0q-PE-oU2"/>
+                                    <constraint firstAttribute="width" constant="20" id="hsJ-fJ-ibb"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="sNf-3Q-qKy" secondAttribute="centerX" id="1We-Fq-uPC"/>
                             <constraint firstItem="k63-y4-ab5" firstAttribute="top" secondItem="ct6-an-K9m" secondAttribute="topMargin" id="DVm-ZC-Zpy"/>
+                            <constraint firstAttribute="centerY" secondItem="sNf-3Q-qKy" secondAttribute="centerY" id="KcS-5f-olY"/>
                             <constraint firstItem="4Oh-pc-K3o" firstAttribute="leading" secondItem="ct6-an-K9m" secondAttribute="leadingMargin" constant="-16" id="Uqz-8W-8uk"/>
                             <constraint firstItem="4Oh-pc-K3o" firstAttribute="top" secondItem="k63-y4-ab5" secondAttribute="bottom" id="a6p-bh-GIn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="k63-y4-ab5" secondAttribute="trailing" constant="-16" id="g1K-dU-Q3n"/>
@@ -134,6 +146,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="QcX-Jw-JzW"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="sNf-3Q-qKy" id="A3h-UD-oRx"/>
                         <outlet property="mapView" destination="4Oh-pc-K3o" id="tyS-5D-onP"/>
                     </connections>
                 </viewController>
@@ -201,8 +214,16 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="On The Map" id="QGW-3I-gmh">
-                                        <barButtonItem key="leftBarButtonItem" title="Pin" id="Iml-Te-UPM"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="S3F-i9-rX0"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Pin" id="Iml-Te-UPM">
+                                            <connections>
+                                                <action selector="addPin:" destination="dQB-pT-6KN" id="QMN-vg-nCQ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="S3F-i9-rX0">
+                                            <connections>
+                                                <action selector="logOut:" destination="dQB-pT-6KN" id="KK5-7f-Evd"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

@@ -136,8 +136,8 @@
 			children = (
 				FB0C3D0A1B73A680001D4246 /* LoginViewController.swift */,
 				FB152BBA1B83D61900C6AD07 /* MapViewController.swift */,
-				FB152BBC1B83D71000C6AD07 /* InfoPostViewController.swift */,
 				FB4DD4191B8A6EEE00A8F5A7 /* ListViewController.swift */,
+				FB152BBC1B83D71000C6AD07 /* InfoPostViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

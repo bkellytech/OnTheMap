@@ -29,7 +29,39 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.tableView.reloadData()
                 }
             } else {
-                println("ERROR:")
+                //Display error message
+                let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    
+                }
+                alert.addAction(dismissAction)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    @IBAction func addPin(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func logOut(sender: AnyObject) {
+        UdacityClient.sharedInstance.logout() { success, error in
+            if success == true {
+                dispatch_async(dispatch_get_main_queue()) {
+                    let loginController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                
+                    self.presentViewController(loginController, animated: true, completion: nil)
+                }
+            } else {
+                let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    
+                }
+                alert.addAction(dismissAction)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
             }
         }
     }

@@ -16,7 +16,7 @@ extension ParseClient {
     }
     
     struct Messages {
-        static let networkError = "Error connecting to Parse."
+        static let networkError = "Error downloading student location data."
     }
     
     struct JSONResponseKeys {
