@@ -77,8 +77,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if success == true {
                 dispatch_async(dispatch_get_main_queue()) {
                     let loginController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-                    
-                    self.presentViewController(loginController, animated: true, completion: nil)
+                    self.dismissViewControllerAnimated(true, completion: nil)
                 }
             } else {
                 let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
@@ -112,9 +111,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return pinView
     }
     
-    
-    // This delegate method is implemented to respond to taps. It opens the system browser
-    // to the URL specified in the annotationViews subtitle property.
     func mapView(mapView: MKMapView!, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if control == annotationView.rightCalloutAccessoryView {

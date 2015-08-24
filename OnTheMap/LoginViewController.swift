@@ -23,6 +23,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         activityIndicator.hidesWhenStopped = true
+        self.passwordField.text = ""
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +47,6 @@ class LoginViewController: UIViewController {
                 //Display error message
                 let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
                 let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-                    self.usernameField.text = ""
                     self.passwordField.text = ""
                 }
                 alert.addAction(dismissAction)
