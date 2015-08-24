@@ -105,6 +105,7 @@ class UdacityClient: NSObject {
         taskWithRequest(request) { result, error in
             if error == nil {
                 self.userID = nil
+                completionHandler(success: true, errorMessage: nil)
             } else {
                 completionHandler(success: false, errorMessage: Messages.networkError)
             }
