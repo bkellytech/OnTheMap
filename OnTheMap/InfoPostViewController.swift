@@ -67,6 +67,7 @@ class InfoPostViewController: UIViewController {
                 ParseClient.sharedInstance.postStudentLocation(locationData) { success, errorMessage in
                     if success {
                         println("User location saved")
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     } else {
                         println(errorMessage)
                     }
@@ -80,6 +81,7 @@ class InfoPostViewController: UIViewController {
     }
     
     func findOnMap(location: String) {
+        activityIndicator.startAnimating()
         geocoder.geocodeAddressString(location) { placemarks, error in
             if error == nil {
                 if let placemark = placemarks[0] as? CLPlacemark {
@@ -92,6 +94,7 @@ class InfoPostViewController: UIViewController {
                     
                     //Reconfigure display
                     dispatch_async(dispatch_get_main_queue()) {
+                        self.activityIndicator.stopAnimating()
                         self.mapView.hidden = false
                         self.topLabel.text = "What is your link?"
                         self.entryField.text = "Enter URL"
