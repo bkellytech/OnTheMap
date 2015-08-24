@@ -108,7 +108,11 @@
                                 <items>
                                     <navigationItem title="On The Map" id="rKO-bZ-u6a">
                                         <barButtonItem key="leftBarButtonItem" title="Pin" id="c0c-wY-xpe"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="OFz-dl-WtC"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Logout" id="OFz-dl-WtC">
+                                            <connections>
+                                                <action selector="logout:" destination="Jqi-oR-qa9" id="UBk-Ee-NM7"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <variation key="default">
@@ -119,6 +123,7 @@
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4Oh-pc-K3o">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="Jqi-oR-qa9" id="3MU-W0-EUc"/>
                                 </connections>

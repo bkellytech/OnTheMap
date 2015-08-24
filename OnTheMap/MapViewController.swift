@@ -66,9 +66,27 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
-    // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
-    // method in TableViewDataSource.
+    @IBAction func logout(sender: AnyObject) {
+        UdacityClient.sharedInstance.logout() { success, error in
+            if success == true {
+                dispatch_async(dispatch_get_main_queue()) {
+                    let loginController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+                    
+                    self.presentViewController(loginController, animated: true, completion: nil)
+                }
+            } else {
+                let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    
+                }
+                alert.addAction(dismissAction)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
         let reuseId = "pin"
