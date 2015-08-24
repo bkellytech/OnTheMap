@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ParseStudentLocation {
+struct ParseStudentLocation: Printable {
     var objectId: String
     var uniqueKey: String
     var firstName: String
@@ -17,6 +17,10 @@ struct ParseStudentLocation {
     var mediaURL: String
     var latitude: Float
     var longitude: Float
+    
+    var description: String {
+        return "ParseStudentLocation: \(objectId)-\(uniqueKey)"
+    }
     
     init( dictionary: [String : AnyObject] ) {
         objectId = dictionary[ParseClient.JSONResponseKeys.objectId] as! String

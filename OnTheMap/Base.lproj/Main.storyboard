@@ -326,6 +326,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-MS-HG9">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMr-Ku-sfU">
                                 <rect key="frame" x="-6" y="0.0" width="606" height="120"/>
                                 <color key="backgroundColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -336,6 +339,18 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbk-ep-24j">
+                                <rect key="frame" x="16" y="159" width="568" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="vbK-ZK-je9"/>
+                                </constraints>
+                                <color key="textColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Hdt-B6-icN">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbb-Js-z9s">
                                 <rect key="frame" x="194" y="518" width="213" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -348,22 +363,10 @@
                                     <color key="titleColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="submit:" destination="MTn-km-oQA" eventType="touchUpInside" id="LPD-cO-sBE"/>
+                                </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Enter location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbk-ep-24j">
-                                <rect key="frame" x="16" y="159" width="568" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="vbK-ZK-je9"/>
-                                </constraints>
-                                <color key="textColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Hdt-B6-icN">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                            </activityIndicatorView>
-                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-MS-HG9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="0.85489510489999998" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -383,6 +386,13 @@
                             <constraint firstItem="fbk-ep-24j" firstAttribute="top" secondItem="rMr-Ku-sfU" secondAttribute="bottom" constant="39" id="zz3-FT-kJs"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Hdt-B6-icN" id="m3P-K7-Cdd"/>
+                        <outlet property="entryField" destination="fbk-ep-24j" id="XRi-fR-7yK"/>
+                        <outlet property="mapView" destination="Jvs-MS-HG9" id="H2s-4N-omy"/>
+                        <outlet property="submitButton" destination="hbb-Js-z9s" id="cGx-rR-CyJ"/>
+                        <outlet property="topLabel" destination="rMr-Ku-sfU" id="sTr-97-EMe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMd-qX-90U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

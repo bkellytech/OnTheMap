@@ -56,7 +56,43 @@ class ParseClient: NSObject {
                     completionHandler( results: locations, errorMessage: nil )
                 }
             } else {
-                completionHandler( results: nil, errorMessage: Messages.networkError )
+                completionHandler( results: nil, errorMessage: Messages.downloadError )
+            }
+        }
+    }
+    
+    func queryStudentLocation( uniqueKey: String, completionHandler: (results: [ParseStudentLocation]?, errorMessage: String?) -> Void ) {
+        
+        let urlString = "\(Constants.BaseURL)?where=%7B%22uniqueKey%22%3A%22\(uniqueKey)%22%7D"
+        let url = NSURL(string: urlString)
+        let request = NSMutableURLRequest(URL: url!)
+        
+        taskWithRequest(request) { JSONresults, error in
+            if error == nil {
+                if let results = JSONresults?.valueForKey(JSONResponseKeys.results) as? [[String : AnyObject]] {
+                    var locations = ParseStudentLocation.locationsFromResults(results)
+                    completionHandler( results: locations, errorMessage: nil )
+                }
+            } else {
+                completionHandler( results: nil, errorMessage: Messages.downloadError )
+            }
+        }
+    }
+    
+    func postStudentLocation( completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: Constants.BaseURL)!)
+        
+        request.HTTPMethod = "POST"
+
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".dataUsingEncoding(NSUTF8StringEncoding)
+        
+        taskWithRequest(request) { JSONresults, error in
+            if error == nil {
+                completionHandler(success: true, errorMessage: nil)
+            } else {
+                completionHandler(success: false, errorMessage: Messages.postError)
             }
         }
     }
