@@ -12,17 +12,20 @@ extension ParseClient {
     struct Constants {
         static let BaseURL: String = "https://api.parse.com/1/classes/StudentLocation"
         static let AppID: String = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
-        static let APIKey: String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        //static let APIKey: String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        static let APIKey: String = "MublebyJumble"
     }
     
     struct Messages {
-        static let downloadError = "Error retrieving student location data."
+        static let downloadError = "Error downloading student data"
+        static let networkError = "Error connecting to server"
         static let postError = "Error posting student location data."
     }
     
     struct JSONResponseKeys {
         //GET and QUERY
         static let results: String = "results"
+        static let error: String = "error"
         
         static let objectId: String = "objectId"
         static let uniqueKey: String = "uniqueKey"

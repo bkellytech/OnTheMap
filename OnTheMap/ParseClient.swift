@@ -37,9 +37,11 @@ class ParseClient: NSObject {
         let task = session.dataTaskWithRequest( request ) { (data, response, error) in
             if error == nil {
                 //Success
+                println(NSString(data: data, encoding: NSUTF8StringEncoding))
                 ClientUtility.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
             } else {
                 //Error
+                println(error.localizedDescription)
                 completionHandler(results: nil, error: error)
             }
         }
@@ -49,16 +51,20 @@ class ParseClient: NSObject {
     
     func getStudentLocations( completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Constants.BaseURL + "?order=-updatedAt")!)
+        //let request = NSMutableURLRequest(URL: NSURL(string: Constants.BaseURL + "?order=-updatedAt")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: Constants.BaseURL + "?fourdoor=-updatedAt")!)
         
         taskWithRequest(request) { JSONresults, error in
+            
             if error == nil {
                 if let results = JSONresults?.valueForKey(JSONResponseKeys.results) as? [[String : AnyObject]] {
                     self.locations = ParseStudentLocation.locationsFromResults(results)
                     completionHandler( success: true, errorMessage: nil )
+                } else {
+                    completionHandler( success: false, errorMessage: Messages.downloadError )
                 }
             } else {
-                completionHandler( success: false, errorMessage: Messages.downloadError )
+                completionHandler( success: false, errorMessage: Messages.networkError )
             }
         }
     }
