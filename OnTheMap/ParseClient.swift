@@ -13,7 +13,10 @@ class ParseClient: NSObject {
     //Singleton
     static let sharedInstance = ParseClient()
     
+    var locations: [ParseStudentLocation]
+    
     override init() {
+        locations = [ParseStudentLocation]()
         super.init()
     }
     
@@ -52,8 +55,8 @@ class ParseClient: NSObject {
         taskWithRequest(request) { JSONresults, error in
             if error == nil {
                 if let results = JSONresults?.valueForKey(JSONResponseKeys.results) as? [[String : AnyObject]] {
-                    var locations = ParseStudentLocation.locationsFromResults(results)
-                    completionHandler( results: locations, errorMessage: nil )
+                    self.locations = ParseStudentLocation.locationsFromResults(results)
+                    completionHandler( results: self.locations, errorMessage: nil )
                 }
             } else {
                 completionHandler( results: nil, errorMessage: Messages.downloadError )

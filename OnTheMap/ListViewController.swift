@@ -12,8 +12,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var tableView: UITableView!
     
-    var locations: [ParseStudentLocation] = [ParseStudentLocation]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,9 +20,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(animated: Bool) {
         
-        ParseClient.sharedInstance.getStudentLocations() { locations, error in
-            if locations != nil {
-                self.locations = locations!
+        ParseClient.sharedInstance.getStudentLocations() { results, error in
+            if error == nil {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
                 }
@@ -72,7 +69,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cellReuseIdentifier = "StudentLocationCell"
         var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! UITableViewCell
         
-        let location = locations[indexPath.row]
+        let location = ParseClient.sharedInstance.locations[indexPath.row]
         
         cell.textLabel?.text = "\(location.firstName) \(location.lastName)"
         cell.detailTextLabel?.text = location.mediaURL
@@ -81,11 +78,11 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return ParseClient.sharedInstance.locations.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let location = locations[indexPath.row]
+        let location = ParseClient.sharedInstance.locations[indexPath.row]
         
         let app = UIApplication.sharedApplication()
         if let url = NSURL(string: location.mediaURL) {

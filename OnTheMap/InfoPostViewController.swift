@@ -101,6 +101,7 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //Handle location post and put completion 
     func postComplete( success: Bool, errorMessage: String? ) {
         if success {
             self.dismissViewControllerAnimated(true, completion: nil)

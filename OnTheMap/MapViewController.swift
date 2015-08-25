@@ -14,8 +14,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var locations: [ParseStudentLocation] = [ParseStudentLocation]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,13 +24,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         activityIndicator.startAnimating()
         mapView.alpha = 0.4
         
-        ParseClient.sharedInstance.getStudentLocations() { locations, error in
+        ParseClient.sharedInstance.getStudentLocations() { results, error in
             var annotations = [MKPointAnnotation]()
-            
-            if locations != nil {
-                self.locations = locations!
-                
-                for location in locations! {
+            if error == nil {
+                for location in ParseClient.sharedInstance.locations {
                     let lat = CLLocationDegrees(location.latitude)
                     let long = CLLocationDegrees(location.longitude)
                     
