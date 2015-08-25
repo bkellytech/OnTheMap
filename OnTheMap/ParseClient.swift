@@ -98,4 +98,24 @@ class ParseClient: NSObject {
         }
     }
     
+    func putStudentLocation( objectId: String, data: [String: AnyObject], completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
+
+        let urlString = "\(Constants.BaseURL)/\(objectId)"
+        let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
+        
+        request.HTTPMethod = "PUT"
+        var jsonifyError: NSError? = nil
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPBody = NSJSONSerialization.dataWithJSONObject(data, options: nil, error: &jsonifyError)
+        
+        taskWithRequest(request) { JSONresults, error in
+            if error == nil {
+                completionHandler(success: true, errorMessage: nil)
+            } else {
+                completionHandler(success: false, errorMessage: Messages.postError)
+            }
+        }
+    }
+    
 }

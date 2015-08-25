@@ -326,9 +326,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-MS-HG9">
-                                <rect key="frame" x="0.0" y="120" width="600" height="480"/>
-                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMr-Ku-sfU">
                                 <rect key="frame" x="-6" y="0.0" width="606" height="120"/>
                                 <color key="backgroundColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -352,8 +349,11 @@
                                     <outlet property="delegate" destination="MTn-km-oQA" id="Zf9-p2-gWJ"/>
                                 </connections>
                             </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Hdt-B6-icN">
+                                <rect key="frame" x="290" y="350" width="20" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbb-Js-z9s">
-                                <rect key="frame" x="194" y="518" width="213" height="44"/>
+                                <rect key="frame" x="194" y="488" width="213" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="AkX-ZA-gSJ"/>
@@ -368,19 +368,37 @@
                                     <action selector="submit:" destination="MTn-km-oQA" eventType="touchUpInside" id="LPD-cO-sBE"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Hdt-B6-icN">
-                                <rect key="frame" x="290" y="350" width="20" height="20"/>
-                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMz-6n-6J1">
+                                <rect key="frame" x="16" y="2" width="133" height="110"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmB-3f-66A">
+                                <rect key="frame" x="277" y="550" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Cvj-f0-XKb"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.28254722760000001" green="0.33985565839999998" blue="0.81442212300000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelSubmission:" destination="MTn-km-oQA" eventType="touchUpInside" id="u6d-jv-eir"/>
+                                </connections>
+                            </button>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-MS-HG9">
+                                <rect key="frame" x="0.0" y="120" width="600" height="480"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="0.85489510489999998" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Hdt-B6-icN" secondAttribute="centerY" constant="-60" id="6va-OV-LLg"/>
                             <constraint firstItem="fbk-ep-24j" firstAttribute="top" secondItem="ezQ-v7-L70" secondAttribute="bottom" constant="100" id="9cr-vN-xK3"/>
-                            <constraint firstItem="p8P-On-jaW" firstAttribute="top" secondItem="hbb-Js-z9s" secondAttribute="bottom" constant="38" id="BLZ-cG-EF7"/>
+                            <constraint firstItem="p8P-On-jaW" firstAttribute="top" secondItem="hbb-Js-z9s" secondAttribute="bottom" constant="68" id="BLZ-cG-EF7"/>
+                            <constraint firstAttribute="centerX" secondItem="dmB-3f-66A" secondAttribute="centerX" constant="-1" id="Chw-KT-8fW"/>
                             <constraint firstItem="rMr-Ku-sfU" firstAttribute="top" secondItem="tFZ-ZA-TjI" secondAttribute="topMargin" id="FZW-q0-F8K"/>
                             <constraint firstAttribute="centerX" secondItem="Hdt-B6-icN" secondAttribute="centerX" id="Ffr-53-3ka"/>
                             <constraint firstItem="Jvs-MS-HG9" firstAttribute="top" secondItem="tFZ-ZA-TjI" secondAttribute="topMargin" constant="120" id="K26-Ea-Cb3"/>
                             <constraint firstItem="Jvs-MS-HG9" firstAttribute="leading" secondItem="tFZ-ZA-TjI" secondAttribute="leadingMargin" constant="-16" id="NmH-Wi-kam"/>
+                            <constraint firstItem="p8P-On-jaW" firstAttribute="top" secondItem="dmB-3f-66A" secondAttribute="bottom" constant="20" id="SKm-4g-Bxk"/>
                             <constraint firstItem="rMr-Ku-sfU" firstAttribute="leading" secondItem="tFZ-ZA-TjI" secondAttribute="leadingMargin" constant="-22" id="eFz-ZR-ike"/>
                             <constraint firstItem="p8P-On-jaW" firstAttribute="top" secondItem="Jvs-MS-HG9" secondAttribute="bottom" id="edP-xa-rwS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fbk-ep-24j" secondAttribute="trailing" constant="-16" id="fxh-Dr-N93"/>

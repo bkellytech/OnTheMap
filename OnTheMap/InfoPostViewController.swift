@@ -81,6 +81,12 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func cancelSubmission(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    
     func findOnMap(location: String) {
         activityIndicator.startAnimating()
         geocoder.geocodeAddressString(location) { placemarks, error in
@@ -110,12 +116,21 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
                 }
             } else {
                 println("Error: Couldn't find location")
+                let alert = UIAlertController(title: "Can't get there from here.", message: "Sorry we couldn't find that location.", preferredStyle: .Alert)
+                let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                    self.entryField.text = ""
+                    self.activityIndicator.stopAnimating()
+                }
+                alert.addAction(dismissAction)
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
+                
             }
         }
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
-        println("Did begin editing")
         textField.text = ""
     }
     
@@ -123,7 +138,4 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
         submit(self)
         return true
     }
-    
-    
-
 }
