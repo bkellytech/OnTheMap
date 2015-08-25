@@ -91,7 +91,13 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
                             println("User location updated")
                             self.dismissViewControllerAnimated(true, completion: nil)
                         } else {
-                            println(errorMessage)
+                            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
+                            let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
+                            alert.addAction(dismissAction)
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.presentViewController(alert, animated: true, completion: nil)
+                            }
                         }
                     }
                 } else {
@@ -100,7 +106,13 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
                             println("User location saved")
                             self.dismissViewControllerAnimated(true, completion: nil)
                         } else {
-                            println(errorMessage)
+                            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
+                            let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
+                            alert.addAction(dismissAction)
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.presentViewController(alert, animated: true, completion: nil)
+                            }
                         }
                     }
                 }
