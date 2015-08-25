@@ -46,9 +46,8 @@ class ParseClient: NSObject {
         task.resume()
         return task
     }
-
     
-    func getStudentLocations( completionHandler: (results: [ParseStudentLocation]?, errorMessage: String?) -> Void ) {
+    func getStudentLocations( completionHandler: (success: Bool, errorMessage: String?) -> Void ) {
         
         let request = NSMutableURLRequest(URL: NSURL(string: Constants.BaseURL + "?order=-updatedAt")!)
         
@@ -56,10 +55,10 @@ class ParseClient: NSObject {
             if error == nil {
                 if let results = JSONresults?.valueForKey(JSONResponseKeys.results) as? [[String : AnyObject]] {
                     self.locations = ParseStudentLocation.locationsFromResults(results)
-                    completionHandler( results: self.locations, errorMessage: nil )
+                    completionHandler( success: true, errorMessage: nil )
                 }
             } else {
-                completionHandler( results: nil, errorMessage: Messages.downloadError )
+                completionHandler( success: false, errorMessage: Messages.downloadError )
             }
         }
     }

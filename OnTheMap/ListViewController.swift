@@ -20,14 +20,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(animated: Bool) {
         
-        ParseClient.sharedInstance.getStudentLocations() { results, error in
-            if error == nil {
+        ParseClient.sharedInstance.getStudentLocations() { success, errorMessage in
+            if success {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.tableView.reloadData()
                 }
             } else {
                 //Display error message
-                let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
                 let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
                     
                 }

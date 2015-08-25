@@ -24,9 +24,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         activityIndicator.startAnimating()
         mapView.alpha = 0.4
         
-        ParseClient.sharedInstance.getStudentLocations() { results, error in
+        ParseClient.sharedInstance.getStudentLocations() { success, errorMessage in
             var annotations = [MKPointAnnotation]()
-            if error == nil {
+            if success {
                 for location in ParseClient.sharedInstance.locations {
                     let lat = CLLocationDegrees(location.latitude)
                     let long = CLLocationDegrees(location.longitude)
@@ -43,7 +43,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             } else {
                 //Display error message
                 
-                let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
                 let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
                     //self.activityIndicator.stopAnimating()
                 }
