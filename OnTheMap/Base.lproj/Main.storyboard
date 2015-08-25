@@ -56,6 +56,12 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect user name or password." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9O-Ra-6MQ">
+                                        <rect key="frame" x="172" y="405" width="265" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.85489510489999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -67,10 +73,12 @@
                                     <constraint firstItem="M7f-VZ-fg6" firstAttribute="leading" secondItem="CaW-Xg-Wwa" secondAttribute="leading" constant="20" id="St5-ZC-otc"/>
                                     <constraint firstAttribute="trailing" secondItem="Kwo-3n-ouV" secondAttribute="trailing" constant="20" id="V7f-2Z-cdi"/>
                                     <constraint firstItem="Plp-bL-iLM" firstAttribute="top" secondItem="Kwo-3n-ouV" secondAttribute="bottom" constant="8" id="WdM-yU-OLs"/>
+                                    <constraint firstItem="Y9O-Ra-6MQ" firstAttribute="top" secondItem="M7f-VZ-fg6" secondAttribute="bottom" constant="65" id="XEM-Fz-QtQ"/>
                                     <constraint firstAttribute="trailing" secondItem="Plp-bL-iLM" secondAttribute="trailing" constant="20" id="cyQ-V3-AVz"/>
                                     <constraint firstItem="WeZ-xD-rl0" firstAttribute="leading" secondItem="CaW-Xg-Wwa" secondAttribute="leading" constant="20" id="fgW-y7-AQf"/>
                                     <constraint firstItem="Plp-bL-iLM" firstAttribute="leading" secondItem="CaW-Xg-Wwa" secondAttribute="leading" constant="20" id="hjw-gZ-d4c"/>
                                     <constraint firstAttribute="centerX" secondItem="Plp-bL-iLM" secondAttribute="centerX" id="mb0-V8-aUs"/>
+                                    <constraint firstAttribute="centerX" secondItem="Y9O-Ra-6MQ" secondAttribute="centerX" id="oxO-p1-HR3"/>
                                     <constraint firstAttribute="trailing" secondItem="WeZ-xD-rl0" secondAttribute="trailing" constant="20" id="wnO-0j-159"/>
                                 </constraints>
                             </view>
@@ -102,6 +110,7 @@
                         <outlet property="activityIndicator" destination="SbU-vL-U4V" id="FjR-Uh-a6e"/>
                         <outlet property="loginButton" destination="M7f-VZ-fg6" id="KLj-nN-pWL"/>
                         <outlet property="loginSubview" destination="CaW-Xg-Wwa" id="COj-wx-12u"/>
+                        <outlet property="passwordErrorLabel" destination="Y9O-Ra-6MQ" id="HQq-xI-OXF"/>
                         <outlet property="passwordField" destination="Plp-bL-iLM" id="uP0-je-sdt"/>
                         <outlet property="usernameField" destination="Kwo-3n-ouV" id="TPf-bb-HdO"/>
                     </connections>

@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginSubview: UIView!
+    @IBOutlet weak var passwordErrorLabel: UILabel!
     
     let shake = CAKeyframeAnimation( keyPath:"transform" )
     
@@ -32,18 +33,15 @@ class LoginViewController: UIViewController {
         shake.duration = 7/100
     }
     
+    
     override func viewWillAppear(animated: Bool) {
         activityIndicator.hidesWhenStopped = true
         self.passwordField.text = ""
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func logIn(sender: AnyObject) {
         startNetworkActivity()
+        passwordErrorLabel.hidden = true
         
         UdacityClient.sharedInstance.loginWithUsername( usernameField.text, password: passwordField.text) { (success, error) in
             
@@ -61,7 +59,9 @@ class LoginViewController: UIViewController {
                     //Incorrect username or password
                     dispatch_async(dispatch_get_main_queue()) {
                         self.loginSubview.layer.addAnimation( self.shake, forKey:nil )
+                        self.passwordErrorLabel.hidden = false
                     }
+                    
                     self.passwordField.text = ""
                 } else {
                     let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
