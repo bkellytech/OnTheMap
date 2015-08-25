@@ -27,14 +27,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.alpha = 0.4
         
         ParseClient.sharedInstance.getStudentLocations() { locations, error in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.activityIndicator.stopAnimating()
-                self.mapView.alpha = 1.0
-            }
+            var annotations = [MKPointAnnotation]()
             
             if locations != nil {
                 self.locations = locations!
-                var annotations = [MKPointAnnotation]()
                 
                 for location in locations! {
                     let lat = CLLocationDegrees(location.latitude)
@@ -49,8 +45,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     
                     annotations.append(annotation)
                 }
-                self.mapView.addAnnotations(annotations)
-                
             } else {
                 //Display error message
                 
@@ -62,6 +56,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.mapView.addAnnotations(annotations)
+                self.activityIndicator.stopAnimating()
+                self.mapView.alpha = 1.0
             }
         }
     }
