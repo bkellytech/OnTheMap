@@ -15,10 +15,21 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loginSubview: UIView!
+    
+    let shake = CAKeyframeAnimation( keyPath:"transform" )
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        shake.values = [
+            NSValue( CATransform3D:CATransform3DMakeTranslation(-5, 0, 0 ) ),
+            NSValue( CATransform3D:CATransform3DMakeTranslation( 5, 0, 0 ) )
+        ]
+        shake.autoreverses = true
+        shake.repeatCount = 2
+        shake.duration = 7/100
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,16 +56,25 @@ class LoginViewController: UIViewController {
                 }
             } else {
                 //Display error message
-                let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
-                let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-                    if error == UdacityClient.Messages.loginError {
-                        self.passwordField.text = ""
+                
+                if error == UdacityClient.Messages.loginError {
+                    //Incorrect username or password
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.loginSubview.layer.addAnimation( self.shake, forKey:nil )
+                    }
+                    self.passwordField.text = ""
+                } else {
+                    let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                    let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
+                    alert.addAction(dismissAction)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.presentViewController(alert, animated: true, completion: nil)
                     }
                 }
-                alert.addAction(dismissAction)
+                
                 dispatch_async(dispatch_get_main_queue()) {
                     self.stopNetworkActivity()
-                    self.presentViewController(alert, animated: true, completion: nil)
                 }
             }
         }
