@@ -348,7 +348,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.20000000000000001" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-MS-HG9">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-MS-HG9">
                                 <rect key="frame" x="0.0" y="120" width="600" height="480"/>
                             </mapView>
                             <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbb-Js-z9s">
@@ -390,12 +390,12 @@
                                     <outlet property="delegate" destination="MTn-km-oQA" id="Zf9-p2-gWJ"/>
                                 </connections>
                             </textField>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Hdt-B6-icN">
-                                <rect key="frame" x="290" y="350" width="20" height="20"/>
-                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMz-6n-6J1">
                                 <rect key="frame" x="16" y="2" width="133" height="110"/>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="leB-ji-QsG">
+                                <rect key="frame" x="291" y="350" width="20" height="20"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmB-3f-66A">
                                 <rect key="frame" x="277" y="550" width="48" height="30"/>
                                 <state key="normal" title="Cancel">
@@ -410,14 +410,14 @@
                         <color key="backgroundColor" white="0.85489510489999998" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="p8P-On-jaW" firstAttribute="top" secondItem="hbb-Js-z9s" secondAttribute="bottom" constant="68" id="6bD-iO-SZt"/>
-                            <constraint firstAttribute="centerY" secondItem="Hdt-B6-icN" secondAttribute="centerY" constant="-60" id="6va-OV-LLg"/>
                             <constraint firstItem="fbk-ep-24j" firstAttribute="top" secondItem="ezQ-v7-L70" secondAttribute="bottom" constant="100" id="9cr-vN-xK3"/>
+                            <constraint firstItem="Jvs-MS-HG9" firstAttribute="centerY" secondItem="leB-ji-QsG" secondAttribute="centerY" id="DGl-DW-bjn"/>
                             <constraint firstItem="rMr-Ku-sfU" firstAttribute="top" secondItem="tFZ-ZA-TjI" secondAttribute="topMargin" id="FZW-q0-F8K"/>
-                            <constraint firstAttribute="centerX" secondItem="Hdt-B6-icN" secondAttribute="centerX" id="Ffr-53-3ka"/>
                             <constraint firstItem="Jvs-MS-HG9" firstAttribute="top" secondItem="tFZ-ZA-TjI" secondAttribute="topMargin" constant="120" id="K26-Ea-Cb3"/>
                             <constraint firstItem="Jvs-MS-HG9" firstAttribute="leading" secondItem="tFZ-ZA-TjI" secondAttribute="leadingMargin" constant="-16" id="NmH-Wi-kam"/>
                             <constraint firstAttribute="centerX" secondItem="hbb-Js-z9s" secondAttribute="centerX" constant="-0.5" id="Om5-Sm-uPg"/>
                             <constraint firstItem="p8P-On-jaW" firstAttribute="top" secondItem="dmB-3f-66A" secondAttribute="bottom" constant="20" id="TLV-0X-qhZ"/>
+                            <constraint firstAttribute="centerX" secondItem="leB-ji-QsG" secondAttribute="centerX" constant="-1" id="azf-tb-5Ko"/>
                             <constraint firstItem="rMr-Ku-sfU" firstAttribute="leading" secondItem="tFZ-ZA-TjI" secondAttribute="leadingMargin" constant="-22" id="eFz-ZR-ike"/>
                             <constraint firstItem="p8P-On-jaW" firstAttribute="top" secondItem="Jvs-MS-HG9" secondAttribute="bottom" id="edP-xa-rwS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fbk-ep-24j" secondAttribute="trailing" constant="-16" id="fxh-Dr-N93"/>
@@ -428,7 +428,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="Hdt-B6-icN" id="m3P-K7-Cdd"/>
+                        <outlet property="activityIndicator" destination="leB-ji-QsG" id="vSL-yn-MVz"/>
                         <outlet property="entryField" destination="fbk-ep-24j" id="XRi-fR-7yK"/>
                         <outlet property="mapView" destination="Jvs-MS-HG9" id="H2s-4N-omy"/>
                         <outlet property="submitButton" destination="hbb-Js-z9s" id="cGx-rR-CyJ"/>

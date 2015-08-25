@@ -72,55 +72,42 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
         if mapString == nil {
             findOnMap(entryField.text)
         } else {
-            if let url = NSURL(string: entryField.text) {
-                mediaURL = entryField.text
-                
-                let locationData: [String: AnyObject] = [
-                    ParseClient.JSONResponseKeys.uniqueKey: UdacityClient.sharedInstance.userID!,
-                    ParseClient.JSONResponseKeys.firstName: UdacityClient.sharedInstance.name!.first,
-                    ParseClient.JSONResponseKeys.lastName: UdacityClient.sharedInstance.name!.last,
-                    ParseClient.JSONResponseKeys.mapString: mapString!,
-                    ParseClient.JSONResponseKeys.mediaURL: mediaURL!,
-                    ParseClient.JSONResponseKeys.latitude: latitude!,
-                    ParseClient.JSONResponseKeys.longitude: longitude!
-                ]
-                
-                if let id = objectId{
-                    ParseClient.sharedInstance.putStudentLocation(id, data: locationData) { success, errorMessage in
-                        self.postComplete( success, errorMessage: errorMessage )
-                    }
-                } else {
-                    ParseClient.sharedInstance.postStudentLocation(locationData) { success, errorMessage in
-                        self.postComplete( success, errorMessage: errorMessage )
-                    }
-                }
-                
-            } else {
-                println("Please enter a valid URL")
-            }
+            submitLocation()
         }
+
     }
     
-    //Handle location post and put completion 
-    func postComplete( success: Bool, errorMessage: String? ) {
-        if success {
-            self.dismissViewControllerAnimated(true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
-            let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
-            alert.addAction(dismissAction)
+    func submitLocation() {
+        if let url = NSURL(string: entryField.text) {
+            mediaURL = entryField.text
             
-            dispatch_async(dispatch_get_main_queue()) {
-                self.presentViewController(alert, animated: true, completion: nil)
+            let locationData: [String: AnyObject] = [
+                ParseClient.JSONResponseKeys.uniqueKey: UdacityClient.sharedInstance.userID!,
+                ParseClient.JSONResponseKeys.firstName: UdacityClient.sharedInstance.name!.first,
+                ParseClient.JSONResponseKeys.lastName: UdacityClient.sharedInstance.name!.last,
+                ParseClient.JSONResponseKeys.mapString: mapString!,
+                ParseClient.JSONResponseKeys.mediaURL: mediaURL!,
+                ParseClient.JSONResponseKeys.latitude: latitude!,
+                ParseClient.JSONResponseKeys.longitude: longitude!
+            ]
+            
+            activityIndicator.startAnimating()
+            mapView.alpha = 0.5
+            
+            if let id = objectId{
+                ParseClient.sharedInstance.putStudentLocation(id, data: locationData) { success, errorMessage in
+                    self.postComplete( success, errorMessage: errorMessage )
+                }
+            } else {
+                ParseClient.sharedInstance.postStudentLocation(locationData) { success, errorMessage in
+                    self.postComplete( success, errorMessage: errorMessage )
+                }
             }
+            
+        } else {
+            println("Please enter a valid URL")
         }
     }
-    
-    @IBAction func cancelSubmission(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
-    }
-    
     
     func findOnMap(location: String) {
         activityIndicator.startAnimating()
@@ -170,6 +157,30 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
                 
             }
         }
+    }
+    
+    //Handle location post and put completion
+    func postComplete( success: Bool, errorMessage: String? ) {
+        if success {
+            dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
+            let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
+            alert.addAction(dismissAction)
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
+        dispatch_async(dispatch_get_main_queue()) {
+            self.mapView.alpha = 1.0
+            self.activityIndicator.stopAnimating()
+        }
+    }
+    
+    @IBAction func cancelSubmission(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
