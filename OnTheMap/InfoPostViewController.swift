@@ -87,38 +87,30 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
                 
                 if let id = objectId{
                     ParseClient.sharedInstance.putStudentLocation(id, data: locationData) { success, errorMessage in
-                        if success {
-                            println("User location updated")
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        } else {
-                            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
-                            let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
-                            alert.addAction(dismissAction)
-                            
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.presentViewController(alert, animated: true, completion: nil)
-                            }
-                        }
+                        self.postComplete( success, errorMessage: errorMessage )
                     }
                 } else {
                     ParseClient.sharedInstance.postStudentLocation(locationData) { success, errorMessage in
-                        if success {
-                            println("User location saved")
-                            self.dismissViewControllerAnimated(true, completion: nil)
-                        } else {
-                            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
-                            let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
-                            alert.addAction(dismissAction)
-                            
-                            dispatch_async(dispatch_get_main_queue()) {
-                                self.presentViewController(alert, animated: true, completion: nil)
-                            }
-                        }
+                        self.postComplete( success, errorMessage: errorMessage )
                     }
                 }
                 
             } else {
                 println("Please enter a valid URL")
+            }
+        }
+    }
+    
+    func postComplete( success: Bool, errorMessage: String? ) {
+        if success {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
+            let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
+            alert.addAction(dismissAction)
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.presentViewController(alert, animated: true, completion: nil)
             }
         }
     }
