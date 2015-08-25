@@ -18,13 +18,16 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+
+    var objectId: String?
+    var oldMapString: String?
+    var oldMediaURL: String?
     
     var mapString: String?
     var mediaURL: String?
     var latitude: Double?
     var longitude: Double?
-    var objectId: String?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,7 +39,23 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
             if let locations = results {
                 if locations.count > 0 {
                     self.objectId = locations[0].objectId
-                    println("You have already created a location would you like to overwrite it?")
+                    self.oldMapString = locations[0].mapString
+                    self.oldMediaURL = locations[0].mediaURL
+                    
+                    let alert = UIAlertController(title: "Update?", message: "You already have a pin on the map do you want to update it?", preferredStyle: .Alert)
+                    let updateAction = UIAlertAction(title: "Update", style: .Default) { (action) in
+                        self.entryField.text = self.oldMapString
+                    }
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { (action) in
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    alert.addAction(updateAction)
+                    alert.addAction(cancelAction)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    }
+                    
                 } else {
                     //All clear go a head and create a new one
                 }
@@ -66,12 +85,23 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
                     ParseClient.JSONResponseKeys.longitude: longitude!
                 ]
                 
-                ParseClient.sharedInstance.postStudentLocation(locationData) { success, errorMessage in
-                    if success {
-                        println("User location saved")
-                        self.dismissViewControllerAnimated(true, completion: nil)
-                    } else {
-                        println(errorMessage)
+                if let id = objectId{
+                    ParseClient.sharedInstance.putStudentLocation(id, data: locationData) { success, errorMessage in
+                        if success {
+                            println("User location updated")
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        } else {
+                            println(errorMessage)
+                        }
+                    }
+                } else {
+                    ParseClient.sharedInstance.postStudentLocation(locationData) { success, errorMessage in
+                        if success {
+                            println("User location saved")
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        } else {
+                            println(errorMessage)
+                        }
                     }
                 }
                 
@@ -107,15 +137,22 @@ class InfoPostViewController: UIViewController, UITextFieldDelegate {
                     //Reconfigure display
                     dispatch_async(dispatch_get_main_queue()) {
                         self.activityIndicator.stopAnimating()
-                        self.mapView.hidden = false
-                        self.mapView.setRegion(region, animated: true)
+                        
+                        
                         self.topLabel.text = "What is your link?"
-                        self.entryField.text = "Enter URL"
+                        
+                        if self.oldMediaURL != nil {
+                            self.entryField.text = self.oldMediaURL
+                        } else {
+                            self.entryField.text = "Enter URL"
+                        }
                         self.submitButton.setTitle("Submit", forState: .Normal)
+                        
+                        self.mapView.alpha = 1.0
+                        self.mapView.setRegion(region, animated: true)
                     }
                 }
             } else {
-                println("Error: Couldn't find location")
                 let alert = UIAlertController(title: "Can't get there from here.", message: "Sorry we couldn't find that location.", preferredStyle: .Alert)
                 let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
                     self.entryField.text = ""
