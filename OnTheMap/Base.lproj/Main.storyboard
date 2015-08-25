@@ -43,19 +43,27 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="0.28254722758001305" green="0.33985565837994036" blue="0.81442212301587302" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Log in">
+                                <state key="normal" title="Log in to Udacity">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="logIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pOx-kH-wM5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On The Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WeZ-xD-rl0">
+                                <rect key="frame" x="16" y="172" width="568" height="43"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.85489510489510501" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="WeZ-xD-rl0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="2yH-1g-0QS"/>
                             <constraint firstAttribute="centerX" secondItem="Plp-bL-iLM" secondAttribute="centerX" id="8Rt-3x-FuR"/>
                             <constraint firstItem="M7f-VZ-fg6" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="BhM-eM-W3G"/>
                             <constraint firstItem="Plp-bL-iLM" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="HXT-yl-A2F"/>
+                            <constraint firstItem="WeZ-xD-rl0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Ifu-fA-hZO"/>
                             <constraint firstItem="Kwo-3n-ouV" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="OQS-KM-ucz"/>
                             <constraint firstItem="Plp-bL-iLM" firstAttribute="top" secondItem="Kwo-3n-ouV" secondAttribute="bottom" constant="8" id="Vc9-kH-T4A"/>
                             <constraint firstItem="Kwo-3n-ouV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="WVk-GG-Whh"/>
@@ -63,6 +71,7 @@
                             <constraint firstItem="Kwo-3n-ouV" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="dfM-dI-Djn"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="M7f-VZ-fg6" secondAttribute="bottom" constant="44" id="hUO-EK-dgR"/>
                             <constraint firstItem="M7f-VZ-fg6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="lVI-Fp-XF8"/>
+                            <constraint firstItem="Kwo-3n-ouV" firstAttribute="top" secondItem="WeZ-xD-rl0" secondAttribute="bottom" constant="17" id="pBC-rq-Hkk"/>
                             <constraint firstItem="M7f-VZ-fg6" firstAttribute="top" secondItem="Plp-bL-iLM" secondAttribute="bottom" constant="8" id="pR6-ri-PLr"/>
                             <constraint firstAttribute="centerY" secondItem="SbU-vL-U4V" secondAttribute="centerY" constant="-48" id="rJP-Jl-jSd"/>
                             <constraint firstItem="SbU-vL-U4V" firstAttribute="top" secondItem="Plp-bL-iLM" secondAttribute="bottom" constant="18" id="slc-UI-siE"/>
