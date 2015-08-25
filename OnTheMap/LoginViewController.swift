@@ -47,7 +47,9 @@ class LoginViewController: UIViewController {
                 //Display error message
                 let alert = UIAlertController(title: "Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
                 let dismissAction = UIAlertAction(title: "OK", style: .Default) { (action) in
-                    self.passwordField.text = ""
+                    if error == UdacityClient.Messages.loginError {
+                        self.passwordField.text = ""
+                    }
                 }
                 alert.addAction(dismissAction)
                 dispatch_async(dispatch_get_main_queue()) {
