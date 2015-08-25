@@ -93,6 +93,9 @@ class InfoPostViewController: UIViewController {
                     self.mapString = location
                     
                     let region = MKCoordinateRegionMake(coordinates, MKCoordinateSpanMake(0.5, 0.5))
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinates
+                    self.mapView.addAnnotation(annotation)
                     
                     //Reconfigure display
                     dispatch_async(dispatch_get_main_queue()) {
