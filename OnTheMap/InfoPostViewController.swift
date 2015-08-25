@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class InfoPostViewController: UIViewController {
+class InfoPostViewController: UIViewController, UITextFieldDelegate {
     
     let geocoder: CLGeocoder = CLGeocoder()
 
@@ -48,6 +48,8 @@ class InfoPostViewController: UIViewController {
     }
 
     @IBAction func submit(sender: AnyObject) {
+        entryField.endEditing(false)
+        
         if mapString == nil {
             findOnMap(entryField.text)
         } else {
@@ -76,7 +78,6 @@ class InfoPostViewController: UIViewController {
             } else {
                 println("Please enter a valid URL")
             }
-            postLocation()
         }
     }
     
@@ -113,10 +114,16 @@ class InfoPostViewController: UIViewController {
         }
     }
     
-    func postLocation() {
-        
+    func textFieldDidBeginEditing(textField: UITextField) {
+        println("Did begin editing")
+        textField.text = ""
     }
     
-
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        submit(self)
+        return true
+    }
+    
+    
 
 }
